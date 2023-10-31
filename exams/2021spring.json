@@ -1,0 +1,299 @@
+{
+  "difficulty":[2,3,3],
+  "questions":
+          [
+            "פיהוק : עייפות",
+            "חושך מצרים : חושך",
+            "בסרטוט שלפניכם ריבוע שיש לו צלע משותפת..",
+            "אוטובוס בקו 3 יצא בשעה 14:00 מהמסוף שבשכונת רמות..",
+            "Some people believe that the ___ of..",
+            "Afghanistan's ___ ended in 1973, when.."
+          ],
+  "answers":
+          [
+            [2,3,1,3,3,4,3,4,4,2,3,2,4,4,2,1,1,2,1,1,2,1,1],
+            [1,1,1,1,4,2,3,4,4,4,3,2,4,2,4,3,4,4,1,4,3,3,3],
+            [3,1,2,2,1,2,4,3,3,2,1,3,2,4,2,1,2,4,1,3],
+            [4,1,2,1,3,4,3,2,2,3,2,1,4,2,2,1,4,4,3,2],
+            [1,2,2,1,1,2,2,1,4,1,4,1,1,2,4,1,2,3,1,2,4,1],
+            [1,1,4,3,1,4,4,4,4,1,4,2,1,4,3,4,1,2,1,2,2,4]
+
+          ],
+  "scores":
+    {
+      "46":
+      {
+        "hebrew": 150
+      },
+      "45":
+      {
+        "hebrew": 148
+      },
+      "44":
+      {
+        "hebrew": 145,
+        "english": 150
+      },
+      "43":
+      {
+        "hebrew": 143,
+        "english": 147
+      },
+      "42":
+      {
+        "hebrew": 140,
+        "english": 144
+      },
+      "41":
+      {
+        "hebrew": 138,
+        "english": 142
+      },
+      "40":
+      {
+        "hebrew": 136,
+        "math": 150,
+        "english": 140
+      },
+      "39":
+      {
+        "hebrew": 134,
+        "math": 148,
+        "english": 138
+      },
+      "38":
+      {
+        "hebrew": 131,
+        "math": 146,
+        "english": 135
+      },
+      "37":
+      {
+        "hebrew": 129,
+        "math": 144,
+        "english": 133
+      },
+      "36":
+      {
+        "hebrew": 126,
+        "math": 142,
+        "english": 130
+      },
+      "35":
+      {
+        "hebrew": 124,
+        "math": 140,
+        "english": 128
+      },
+      "34":
+      {
+        "hebrew": 122,
+        "math": 138,
+        "english": 126
+      },
+      "33":
+      {
+        "hebrew": 119,
+        "math": 135,
+        "english": 124
+      },
+      "32":
+      {
+        "hebrew": 117,
+        "math": 133,
+        "english": 121
+      },
+      "31":
+      {
+        "hebrew": 114,
+        "math": 130,
+        "english": 119
+      },
+      "30":
+      {
+        "hebrew": 112,
+        "math": 128,
+        "english": 117
+      },
+      "29":
+      {
+        "hebrew": 110,
+        "math": 125,
+        "english": 115
+      },
+      "28":
+      {
+        "hebrew": 108,
+        "math": 122,
+        "english": 112
+      },
+      "27":
+      {
+        "hebrew": 105,
+        "math": 120,
+        "english": 110
+      },
+      "26":
+      {
+        "hebrew": 103,
+        "math": 117,
+        "english": 107
+      },
+      "25":
+      {
+        "hebrew": 101,
+        "math": 114,
+        "english": 105
+      },
+      "24":
+      {
+        "hebrew": 99,
+        "math": 111,
+        "english": 103
+      },
+      "23":
+      {
+        "hebrew": 96,
+        "math": 108,
+        "english": 101
+      },
+      "22":
+      {
+        "hebrew": 94,
+        "math": 106,
+        "english": 98
+      },
+      "21":
+      {
+        "hebrew": 91,
+        "math": 103,
+        "english": 96
+      },
+      "20":
+      {
+        "hebrew": 89,
+        "math": 100,
+        "english": 94
+      },
+      "19":
+      {
+        "hebrew": 87,
+        "math": 97,
+        "english": 92
+      },
+      "18":
+      {
+        "hebrew": 85,
+        "math": 94,
+        "english": 89
+      },
+      "17":
+      {
+        "hebrew": 82,
+        "math": 92,
+        "english": 87
+      },
+      "16":
+      {
+        "hebrew": 80,
+        "math": 89,
+        "english": 84
+      },
+      "15":
+      {
+        "hebrew": 78,
+        "math": 86,
+        "english": 82
+      },
+      "14":
+      {
+        "hebrew": 76,
+        "math": 83,
+        "english": 80
+      },
+      "13":
+      {
+        "hebrew": 74,
+        "math": 80,
+        "english": 78
+      },
+      "12":
+      {
+        "hebrew": 71,
+        "math": 78,
+        "english": 75
+      },
+      "11":
+      {
+        "hebrew": 69,
+        "math": 75,
+        "english": 73
+      },
+      "10":
+      {
+        "hebrew": 67,
+        "math": 72,
+        "english": 71
+      },
+      "9":
+      {
+        "hebrew": 65,
+        "math": 70,
+        "english": 68
+      },
+      "8":
+      {
+        "hebrew": 63,
+        "math": 68,
+        "english": 66
+      },
+      "7":
+      {
+        "hebrew": 61,
+        "math": 65,
+        "english": 64
+      },
+      "6":
+      {
+        "hebrew": 59,
+        "math": 63,
+        "english": 62
+      },
+      "5":
+      {
+        "hebrew": 57,
+        "math": 61,
+        "english": 60
+      },
+      "4":
+      {
+        "hebrew": 55,
+        "math": 58,
+        "english": 58
+      },
+      "3":
+      {
+        "hebrew": 53,
+        "math": 56,
+        "english": 56
+      },
+      "2":
+      {
+        "hebrew": 52,
+        "math": 54,
+        "english": 54
+      },
+      "1":
+      {
+        "hebrew": 51,
+        "math": 52,
+        "english": 52
+      },
+      "0":
+      {
+        "hebrew": 50,
+        "math": 50,
+        "english": 50
+      }
+    }
+}

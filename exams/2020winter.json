@@ -1,0 +1,298 @@
+{
+  "difficulty":[2,2,2],
+  "questions":
+          [
+            "הכביר מילים : דיבר",
+            "מחשבון : חישוב",
+            "לכל מספר חיובי x ולכל מספר שלם n..",
+            "לאוהד יש 6 קלפים הממוספרים ברצף מ-3 עד 8",
+            "In 2007, London's 15-storey P&O office..",
+            "Aristophanes' comic genius is ___"
+          ],
+  "answers":
+          [
+            [3,3,3,1,1,3,2,3,4,3,1,4,1,4,1,4,3,4,4,3,3,1,4],
+            [2,4,4,1,4,1,4,2,2,3,3,3,3,2,4,4,4,3,4,2,3,1,4],
+            [3,1,1,2,2,2,4,1,3,2,1,3,1,2,1,4,2,3,2,4],
+            [1,4,1,2,3,3,4,4,1,3,4,1,4,3,3,2,3,1,2,4],
+            [4,4,3,4,2,4,2,4,1,2,1,3,3,3,1,4,3,4,4,4,1,3],
+            [2,3,1,4,1,3,4,2,4,3,2,3,2,4,1,4,4,1,4,4,2,2]
+          ],
+  "scores":
+    {
+      "46":
+      {
+        "hebrew": 150
+      },
+      "45":
+      {
+        "hebrew": 148
+      },
+      "44":
+      {
+        "hebrew": 146,
+        "english": 150
+      },
+      "43":
+      {
+        "hebrew": 144,
+        "english": 146
+      },
+      "42":
+      {
+        "hebrew": 142,
+        "english": 142
+      },
+      "41":
+      {
+        "hebrew": 140,
+        "english": 139
+      },
+      "40":
+      {
+        "hebrew": 138,
+        "math": 150,
+        "english": 136
+      },
+      "39":
+      {
+        "hebrew": 136,
+        "math": 147,
+        "english": 134
+      },
+      "38":
+      {
+        "hebrew": 133,
+        "math": 145,
+        "english": 132
+      },
+      "37":
+      {
+        "hebrew": 131,
+        "math": 142,
+        "english": 129
+      },
+      "36":
+      {
+        "hebrew": 128,
+        "math": 140,
+        "english": 127
+      },
+      "35":
+      {
+        "hebrew": 126,
+        "math": 137,
+        "english": 125
+      },
+      "34":
+      {
+        "hebrew": 124,
+        "math": 135,
+        "english": 123
+      },
+      "33":
+      {
+        "hebrew": 121,
+        "math": 132,
+        "english": 121
+      },
+      "32":
+      {
+        "hebrew": 119,
+        "math": 130,
+        "english": 119
+      },
+      "31":
+      {
+        "hebrew": 116,
+        "math": 127,
+        "english": 117
+      },
+      "30":
+      {
+        "hebrew": 114,
+        "math": 125,
+        "english": 115
+      },
+      "29":
+      {
+        "hebrew": 112,
+        "math": 123,
+        "english": 113
+      },
+      "28":
+      {
+        "hebrew": 109,
+        "math": 120,
+        "english": 111
+      },
+      "27":
+      {
+        "hebrew": 107,
+        "math": 118,
+        "english": 109
+      },
+      "26":
+      {
+        "hebrew": 104,
+        "math": 115,
+        "english": 107
+      },
+      "25":
+      {
+        "hebrew": 102,
+        "math": 113,
+        "english": 105
+      },
+      "24":
+      {
+        "hebrew": 100,
+        "math": 111,
+        "english": 103
+      },
+      "23":
+      {
+        "hebrew": 98,
+        "math": 108,
+        "english": 101
+      },
+      "22":
+      {
+        "hebrew": 95,
+        "math": 106,
+        "english": 99
+      },
+      "21":
+      {
+        "hebrew": 93,
+        "math": 103,
+        "english": 97
+      },
+      "20":
+      {
+        "hebrew": 91,
+        "math": 101,
+        "english": 95
+      },
+      "19":
+      {
+        "hebrew": 89,
+        "math": 99,
+        "english": 93
+      },
+      "18":
+      {
+        "hebrew": 86,
+        "math": 96,
+        "english": 91
+      },
+      "17":
+      {
+        "hebrew": 84,
+        "math": 94,
+        "english": 90
+      },
+      "16":
+      {
+        "hebrew": 81,
+        "math": 91,
+        "english": 88
+      },
+      "15":
+      {
+        "hebrew": 79,
+        "math": 89,
+        "english": 86
+      },
+      "14":
+      {
+        "hebrew": 77,
+        "math": 86,
+        "english": 84
+      },
+      "13":
+      {
+        "hebrew": 75,
+        "math": 84,
+        "english": 82
+      },
+      "12":
+      {
+        "hebrew": 72,
+        "math": 81,
+        "english": 80
+      },
+      "11":
+      {
+        "hebrew": 70,
+        "math": 79,
+        "english": 78
+      },
+      "10":
+      {
+        "hebrew": 68,
+        "math": 76,
+        "english": 76
+      },
+      "9":
+      {
+        "hebrew": 66,
+        "math": 73,
+        "english": 73
+      },
+      "8":
+      {
+        "hebrew": 64,
+        "math": 70,
+        "english": 70
+      },
+      "7":
+      {
+        "hebrew": 62,
+        "math": 68,
+        "english": 68
+      },
+      "6":
+      {
+        "hebrew": 60,
+        "math": 65,
+        "english": 65
+      },
+      "5":
+      {
+        "hebrew": 58,
+        "math": 63,
+        "english": 63
+      },
+      "4":
+      {
+        "hebrew": 56,
+        "math": 60,
+        "english": 60
+      },
+      "3":
+      {
+        "hebrew": 54,
+        "math": 58,
+        "english": 58
+      },
+      "2":
+      {
+        "hebrew": 52,
+        "math": 55,
+        "english": 55
+      },
+      "1":
+      {
+        "hebrew": 51,
+        "math": 53,
+        "english": 53
+      },
+      "0":
+      {
+        "hebrew": 50,
+        "math": 50,
+        "english": 50
+      }
+    }
+}
