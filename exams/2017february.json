@@ -1,6 +1,8 @@
 {
-  "difficulty":[1,2,2],
-  "questions":
+  "year": 2017,
+  "month/season:":"פברואר",
+  "subjects_difficulty":[1,2,2],
+  "first_questions":
           [
             "עמד בניסיון : התפתה",
             "אמין : לסמוך",

@@ -1,6 +1,8 @@
 {
-  "difficulty":[2,2,2],
-  "questions":
+  "year": 2020,
+  "month/season:":"סתיו",
+  "subjects_difficulty":[2,2,2],
+  "first_questions":
           [
             "המלכה : מלך",
             "אות : נו״ן",

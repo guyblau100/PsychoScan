@@ -1,6 +1,8 @@
 {
-  "difficulty":[3,3,3],
-  "questions":
+  "year": 2018,
+  "month/season:":"חורף",
+  "subjects_difficulty":[3,3,3],
+  "first_questions":
           [
             "מפה : שולחן",
             "ריאה : אוויר",

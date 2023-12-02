@@ -1,6 +1,8 @@
 {
-  "difficulty":[2,3,3],
-  "questions":
+  "year": 2019,
+  "month/season:":"סתיו",
+  "subjects_difficulty":[2,3,3],
+  "first_questions":
           [
             "ענן גשם : ממטרה",
             "עקבות : צעידה",

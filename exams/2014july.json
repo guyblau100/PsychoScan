@@ -1,6 +1,8 @@
 {
-  "difficulty":[3,3,2],
-  "questions":
+  "year": 2014,
+  "month/season:":"יולי",
+  "subjects_difficulty":[3,3,2],
+  "first_questions":
           [
             "גמול : בא על שכרו",
             "נכלם : בייש",

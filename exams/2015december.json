@@ -1,6 +1,8 @@
 {
-  "difficulty":[1,2,1],
-  "questions":
+  "year": 2015,
+  "month/season:":"דצמבר",
+  "subjects_difficulty":[1,2,1],
+  "first_questions":
           [
             "נדיר : תדיר",
             "שוחח : דיבר",

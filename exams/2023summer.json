@@ -1,6 +1,8 @@
 {
-  "difficulty":[2,2,2],
-  "questions":
+  "year": 2023,
+  "month/season:":"קיץ",
+  "subjects_difficulty":[2,2,2],
+  "first_questions":
           [
             "מתנצל : מחילה",
             "לבשל : מרק",

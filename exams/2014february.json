@@ -1,6 +1,8 @@
 {
-  "difficulty":[2,3,1],
-  "questions":
+  "year": 2014,
+  "month/season:":"פברואר",
+  "subjects_difficulty":[2,3,1],
+  "first_questions":
           [
             "נטוש : עזב",
             "דיונה : חול",

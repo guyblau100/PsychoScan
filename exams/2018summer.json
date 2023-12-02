@@ -1,6 +1,8 @@
 {
-  "difficulty":[2,3,3],
-  "questions":
+  "year": 2018,
+  "month/season:":"קיץ",
+  "subjects_difficulty":[2,3,3],
+  "first_questions":
           [
             "ידע : יודע",
             "אזלת יד : יכולת",

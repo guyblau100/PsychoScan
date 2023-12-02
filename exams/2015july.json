@@ -1,6 +1,8 @@
 {
-  "difficulty":[2,3,2],
-  "questions":
+  "year": 2015,
+  "month/season:":"יולי",
+  "subjects_difficulty":[2,3,2],
+  "first_questions":
           [
             "דמיוני : ממש",
             "התגורר : בנה",

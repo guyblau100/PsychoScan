@@ -1,6 +1,8 @@
 {
-  "difficulty":[2,1,2],
-  "questions":
+  "year": 2016,
+  "month/season:":"אפריל",
+  "subjects_difficulty":[2,1,2],
+  "first_questions":
           [
             "ארווה : סייח",
             "אופה : אכילה",

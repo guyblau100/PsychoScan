@@ -1,6 +1,8 @@
 {
-"difficulty":[2,2,2],
-  "questions":
+  "year": 2023,
+  "month/season:":"אביב",
+  "subjects_difficulty":[2,2,2],
+  "first_questions":
           [
             "לענוד : תכשיט",
             "חוקי : פשע",

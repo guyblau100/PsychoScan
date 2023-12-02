@@ -1,6 +1,8 @@
 {
-  "difficulty":[2,3,2],
-  "questions":
+  "year": 2018,
+  "month/season:":"אביב",
+  "subjects_difficulty":[2,3,2],
+  "first_questions":
           [
             "חושך : נר",
             "שפיותו : הטריף את דעתו",

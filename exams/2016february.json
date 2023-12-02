@@ -1,6 +1,8 @@
 {
-  "difficulty":[2,3,2],
-  "questions":
+  "year": 2016,
+  "month/season:":"פברואר",
+  "subjects_difficulty":[2,3,2],
+  "first_questions":
           [
             "נפילה : מעקה",
             "בכור : צאצא",

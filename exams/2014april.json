@@ -1,6 +1,8 @@
 {
-  "difficulty":[1,3,1],
-  "questions":
+  "year": 2014,
+  "month/season:":"אפריל",
+  "subjects_difficulty":[1,3,1],
+  "first_questions":
           [
             "חמוש : נשק",
             "הכביר : להמעיט",

@@ -1,6 +1,8 @@
 {
-  "difficulty":[2,3,3],
-  "questions":
+  "year": 2021,
+  "month/season:":"אביב",
+  "subjects_difficulty":[2,3,3],
+  "first_questions":
           [
             "פיהוק : עייפות",
             "חושך מצרים : חושך",

@@ -1,6 +1,8 @@
 {
-  "difficulty":[3,2,3],
-  "questions":
+  "year": 2017,
+  "month/season:":"ספטמבר",
+  "subjects_difficulty":[3,2,3],
+  "first_questions":
           [
             "הבנת? : הבין",
             "צבע : שני",

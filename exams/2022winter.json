@@ -1,6 +1,8 @@
 {
-  "difficulty":[3,2,1],
-  "questions":
+  "year": 2022,
+  "month/season:":"חורף",
+  "subjects_difficulty":[3,2,1],
+  "first_questions":
           [
             "מגבת : רטוב",
             "אופניים : לדווש",

@@ -1,6 +1,8 @@
 {
-  "difficulty":[1,3,2],
-  "questions":
+  "year": 2019,
+  "month/season:":"חורף",
+  "subjects_difficulty":[1,3,2],
+  "first_questions":
           [
             "שאל : תשובה",
             "זניח : להביא בחשבון",

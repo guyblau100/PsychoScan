@@ -1,6 +1,8 @@
 {
-  "difficulty":[1,3,3],
-  "questions":
+  "year": 2019,
+  "month/season:":"אביב",
+  "subjects_difficulty":[1,3,3],
+  "first_questions":
           [
             "מושלם : פגם",
             "למחול : בלתי נסלח",

@@ -1,6 +1,8 @@
 {
-  "difficulty":[1,2,2],
-  "questions":
+  "year": 2016,
+  "month/season:":"ספטמבר",
+  "subjects_difficulty":[1,2,2],
+  "first_questions":
           [
             "לקצוב : זמן",
             "חתונה : רווקות",

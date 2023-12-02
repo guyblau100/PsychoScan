@@ -1,6 +1,8 @@
 {
-  "difficulty":[2,1,3],
-  "questions":
+  "year": 2015,
+  "month/season:":"ספטמבר",
+  "subjects_difficulty":[2,1,3],
+  "first_questions":
           [
             "בן אדם : בן בליעל",
             "רפתן : רפת",

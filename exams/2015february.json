@@ -1,6 +1,8 @@
 {
-  "difficulty":[1,2,2],
-  "questions":
+  "year": 2015,
+  "month/season:":"פברואר",
+  "subjects_difficulty":[1,2,2],
+  "first_questions":
           [
             "בית הנבחרים : חוק",
             "שיוף : חלק",

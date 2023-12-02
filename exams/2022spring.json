@@ -1,6 +1,8 @@
 {
-  "difficulty":[2,2,3],
-  "questions":
+  "year": 2022,
+  "month/season:":"אביב",
+  "subjects_difficulty":[2,2,3],
+  "first_questions":
           [
             "חיריק : לנקד",
             "גירד : ציפורן",

@@ -1,6 +1,8 @@
 {
-  "difficulty":[3,2,1],
-  "questions":
+  "year": 2016,
+  "month/season:":"דצמבר",
+  "subjects_difficulty":[3,2,1],
+  "first_questions":
           [
             "מכמורת : דיג",
             "תחרות : מתחרה",

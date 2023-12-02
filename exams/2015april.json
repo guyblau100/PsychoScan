@@ -1,6 +1,8 @@
 {
-  "difficulty":[3,3,2],
-  "questions":
+  "year": 2015,
+  "month/season:":"אפריל",
+  "subjects_difficulty":[3,3,2],
+  "first_questions":
           [
             "רווק : חתונה",
             "לדווש : דוושה",

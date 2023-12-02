@@ -1,6 +1,8 @@
 {
-  "difficulty":[1,3,3],
-  "questions":
+  "year": 2022,
+  "month/season:":"סתיו",
+  "subjects_difficulty":[1,3,3],
+  "first_questions":
           [
             "מאפה : אפה",
             "מדיד : למדוד",
