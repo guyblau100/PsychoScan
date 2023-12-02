@@ -3,27 +3,17 @@ import numpy as np
 
 
 def imagePrint(img,imgName):
-    cv2.imshow(imgName,img)
-    cv2.waitKey()
+    cv2.imwrite(f"/Users/guy/Desktop/{imgName}.jpg",img)
 
-def circlesDrawing(img,points):
+def circlesPrint(img,points):
     for point in points:
         cv2.circle(img, point, 15, (0, 255, 0, -1), -1)
     imagePrint(img,"Detected Corners")
 
-def printBoxes(boxes):
-    question = 23
-    for i in range(len(boxes)):
-        cv2.imwrite(f" table number {i+1}.jpg", boxes[i])
-        if i == 4:
-            lenth = boxes[i].shape[1]
-            cut = boxes[i][:,int(lenth/30 * (question-1)):int(lenth/30 * question)]
-            cv2.imwrite(f"section {i+1} question {question} .jpg", cut)
-
 def answersPrint(answers):
     for i in range(0,len(answers)):
-        for k in range(0,23):
-            print(f"the chosen answer for section {i+1}, question {k+1} is {answers[i][k]}")
+        for q in range(len(answers[i])):
+            print(f"the chosen answer for section {i+1}, question {q+1} is {answers[i][q]}")
 
 def printMarksBinaryValues(boxes):
     answers = []
