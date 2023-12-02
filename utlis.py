@@ -1,6 +1,5 @@
 import cv2
 import numpy as np
-import json
 import math
 
 
@@ -70,6 +69,7 @@ def redundantPointsRemove(points):
                         break
             if keep_point:
                 filtered_points.append((x1, y1))
+
     return filtered_points
 
 def wrapPrespective(src,points):
@@ -158,38 +158,15 @@ def markDetact(bubbles):
 def answersReorder(answers,orderlist):
     copy = answers.copy()
     for i in range(0,6):
-        copy[i] = answers[orderlist[i]]
+        if i < 2:
+            finalQuestionIndex = 23
+        elif i < 4:
+            finalQuestionIndex = 20
+        else:
+            finalQuestionIndex = 22
+        copy[i] = answers[orderlist[i]][:finalQuestionIndex]
+    copy = copy[:6]
     return copy
-
-def calculateAVG(answers,exam,orderlist):
-    errors = []
-    mathCorrect = 0
-    englishCorrect = 0
-    hebrewCorrect = 0
-    questionCount = 0
-    jsonFile = open(f"exams/{exam}.json")
-    officalAnswers = json.load(jsonFile)
-    for chapterCount in range(0,6):
-        for question in officalAnswers["answers"][chapterCount]:
-            if question == answers[chapterCount][questionCount]:
-                if chapterCount < 2:
-                    hebrewCorrect += 1
-                elif chapterCount < 4:
-                    mathCorrect += 1
-                else:
-                    englishCorrect += 1
-            else:
-                errors.append((orderlist[chapterCount],questionCount+1,answers[chapterCount][questionCount],question))
-            questionCount += 1
-        chapterCount += 1
-        questionCount = 0
-    errors = sorted(errors, key= lambda x: (x[0],x[1]))
-    hebrewGrade = officalAnswers["scores"][str(hebrewCorrect)]["hebrew"]
-    mathGrade = officalAnswers["scores"][str(mathCorrect)]["math"]
-    englishGrade = officalAnswers["scores"][str(englishCorrect)]["english"]
-    sectionsWightedAvg = (hebrewGrade * 0.4 +mathGrade * 0.4 + englishGrade * 0.2)
-    roundedAvg = round(sectionsWightedAvg)
-    return hebrewGrade,mathGrade,englishGrade,roundedAvg,errors
 
 def finalScore(avg):
     lowBound, highBound = 0,0
@@ -264,17 +241,7 @@ def finalScore(avg):
     finalScore = round(finalScore)
     return finalScore
 
-def printReport(hebrew,math,english,finalScore,errorsList):
-    print("\x1B[4m" + "Errors Description:" + "\x1B[0m")
-    for i in range(len(errorsList)):
-        print(f"section {errorsList[i][0]+1} question {errorsList[i][1]} (chosen: {errorsList[i][2]}, correct: {errorsList[i][3]})")
-    print("")
-    print("\x1B[4m" + "Test Scores:" + "\x1B[0m")
-    print(f"Hebrew: {hebrew}")
-    print(f"Math: {math}")
-    print(f"English: {english}")
-    print("")
-    print("Final Score:" + "\x1B[1m" + str(finalScore) + "\x1B[1m")
+
 
 
 
