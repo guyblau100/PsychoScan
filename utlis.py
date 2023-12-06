@@ -1,15 +1,16 @@
 import cv2
 import numpy as np
 import math
+import base64
 
 
-def preProccesing(img):
+def preProcessing(img):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     blur = cv2.GaussianBlur(gray, (9, 9), 0)
     imgThresh = cv2.adaptiveThreshold(blur, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY_INV, 91, 10)
     return imgThresh
 
-def cornersDetaction(canny):
+def cornersDetection(canny):
     contourCounter = 0
     points1 = []
     points2 = []
@@ -31,7 +32,7 @@ def cornersDetaction(canny):
     return points1 , points2
 
 #order all corners to be ready for the wrap function(quartet)
-def cornersSort(lst1,lst2):
+def cornersSort(lst1, lst2):
     lst1 = sorted(lst1, key=lambda point: (point[1]))          #sort by the points' y cordinate
     lst2 = sorted(lst2, key=lambda point: (point[1]))
     lst1 = couplesSort(lst1)                                   #sort every couple of points by their x cordinate
@@ -72,7 +73,7 @@ def redundantPointsRemove(points):
 
     return filtered_points
 
-def wrapPrespective(src,points):
+def wrapPerspective(src, points):
     boxes = []
     for k in range(0, len(points) - 1, 4):
         pt_A = points[k]
@@ -121,19 +122,19 @@ def adjustBoxes(boxes):
         adjustedBoxes.append(cropedBox)
     return adjustedBoxes
 
-def answersDetaction(boxes):
+def answersDetection(boxes):
     allAnswers = []
     for box in boxes:
         thisSectionAnswers = []
         columns = np.hsplit(box, 30)
         for column in columns:
             bubbles = np.vsplit(column, 4)
-            answer = markDetact(bubbles)
+            answer = markDetect(bubbles)
             thisSectionAnswers.append(answer)
         allAnswers.append(thisSectionAnswers)
     return allAnswers
 
-def markDetact(bubbles):
+def markDetect(bubbles):
     count = 0
     sum = 0
     smallest = float('inf')
@@ -155,7 +156,7 @@ def markDetact(bubbles):
         min_index = -1
     return min_index+1
 
-def answersReorder(answers,orderlist):
+def answersReorder(answers, orderList):
     copy = answers.copy()
     for i in range(0,6):
         if i < 2:
@@ -164,7 +165,7 @@ def answersReorder(answers,orderlist):
             finalQuestionIndex = 20
         else:
             finalQuestionIndex = 22
-        copy[i] = answers[orderlist[i]][:finalQuestionIndex]
+        copy[i] = answers[orderList[i]][:finalQuestionIndex]
     copy = copy[:6]
     return copy
 
@@ -242,10 +243,34 @@ def finalScore(avg):
     return finalScore
 
 
+def MajorFunction(img,sectionsOrderList):
+    image_data = base64.b64decode(img)
+    nparr = np.frombuffer(image_data, np.uint8)
+    src = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+    ogCopy = src.copy()
 
+    # Applying the filters
+    binaryImg = preProcessing(ogCopy)
 
+    # Finding the boxes corners points
+    try:
+        points1, points2 = cornersDetection(binaryImg)
+    except Exception as e:
+        raise Exception(f"Could not find the corners. {str(e)}")
+    else:
+        points1 = redundantPointsRemove(points1)
+        points2 = redundantPointsRemove(points2)
+        points = cornersSort(points1, points2)
+        # Applying the perspective transform (view from above) for each table
+        boxes = wrapPerspective(src, points)
+        # Converting the boxes to binary image
+        threshBoxes = boxesThreshold(boxes)
+        adjustedBoxes = adjustBoxes(threshBoxes)
 
-
+        # Creating the answers array (list of 8 sections, each contains list of answers with values: 1,2,3,4)
+        answers = answersDetection(adjustedBoxes)
+        orderedAnswers = answersReorder(answers, sectionsOrderList)
+        return orderedAnswers
 
 
 
