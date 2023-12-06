@@ -1,48 +1,72 @@
-import cv2
 import utlis
-import debuging
-
-#User Inputs:
-src = cv2.imread("/Users/guy/Desktop/summer2020.JPG")
-exam = "2020summer"
-orderList = [0,2,1,5,3,7]
+from flask import Flask, jsonify, request
+import DB_Management
 
 
-
-ogCopy = src.copy()
-
-#Applying the fillters
-binaryImg = utlis.preProccesing(ogCopy)
-
-#Finding the boxes corners points
-points1, points2 = utlis.cornersDetaction(binaryImg)
-points1 = utlis.redundantPointsRemove(points1)
-points2 = utlis.redundantPointsRemove(points2)
-points = utlis.cornersSort(points1,points2)
-
-#Applaying the prespective trnsform (view from above) for each table
-boxes = utlis.wrapPrespective(src,points)
-
-#Converting the boxes to binary image
-threshBoxes = utlis.boxesThreshold(boxes)
-adjustedBoxes = utlis.adjustBoxes(threshBoxes)
-
-#Creating the answers array (list of 8 chapters, each contains list of answrers with values: 1,2,3,4)
-answers = utlis.answersDetaction(adjustedBoxes)
-orderedAnswers = utlis.answersReorder(answers,orderList)
-
-hebrew,math,english, avg, errors = utlis.calculateAVG(orderedAnswers,exam,orderList)
-finalScore = utlis.finalScore(avg)
-utlis.printReport(hebrew,math,english, finalScore, errors)
+app = Flask(__name__)
 
 
 
-debuging.imagePrint(src,"Original")
-debuging.imagePrint(binaryImg,"PreProcesss")
-debuging.circlesDrawing(ogCopy,points)
-debuging.printBoxes(adjustedBoxes)
-debuging.answersPrint(answers)
-#debuging.printMarksBinaryValues(adjustedBoxes)
+@app.route('/userTests/<string:userEmail>', methods=['GET'])
+def get_user_tests(userEmail):
+    try:
+        tests = DB_Management.getAllUserReports(userEmail)
+    except Exception as e:
+        return jsonify({'error': {'code': 400, 'message': str(e)}}), 400
+    else:
+        return jsonify({'tests': tests})
+
+@app.route('/test/<string:testName>', methods=['GET'])
+def get_test_first_questions(testName):
+    questions = DB_Management.getSimulationFirstQuestions(testName)
+    return jsonify(questions)
+
+@app.route('/user/<string:userEmail>', methods=['GET'])
+def get_graph_page_data(userEmail):
+    try:
+        data = DB_Management.getStatisticsPageData(userEmail)
+    except Exception as e:
+        return jsonify({'error': {'code': 400, 'message': str(e)}}), 400
+    else:
+        return jsonify(data)
+
+@app.route('/createTest', methods=['POST'])
+def insert_test():
+    data = request.get_json()
+    userEmail = data.get('email', '')
+    examYear = data.get('test_year', '')
+    examSeasonOrMonth = data.get('test_seasonOrMonth', '')
+    orderList = data.get('order_list', [])
+    encoded_image = data.get('image', '')
+    try:
+        orderedAnswers = utlis.MajorFunction(encoded_image,orderList)
+        DB_Management.insertSimulation(userEmail, examYear, examSeasonOrMonth, orderedAnswers)
+        resultJson = DB_Management.getSimulationReport(userEmail,examYear,examSeasonOrMonth)
+        return jsonify({resultJson}), 200
+    except Exception as e:
+        return jsonify({'error': {'code': 400, 'message': str(e)}}), 400
+
+@app.route('/createUser', methods=['POST'])
+def create_user():
+    data = request.get_json()
+    userEmail = data.get('email', '')
+    userName = data.get('userName', '')
+    password = data.get('password', '')
+    try:
+         DB_Management.insertUser(userEmail,userName,password)
+    except Exception as e:
+        return jsonify({'error': {'code': 400, 'message': str(e)}}), 400
+    else:
+        return jsonify({"message": f"the user {userName} created successfully"}), 200
+
+
+
+
+
+if __name__ == '__main__':
+    app.run()
+
+
 
 
 
