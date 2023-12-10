@@ -213,7 +213,7 @@ def getStatisticsPageData(userEmail):
 def getAllUserReports(userEmail):
     try:
         cursor = conn.cursor()
-        getTestsQuery = "test_year, test_season_month, FORMAT(test_date,'dd/MM/yyyy') from tests where user_email = ?"
+        getTestsQuery = "select test_year, test_season_month, FORMAT(test_date,'dd/MM/yyyy') from tests join official_tests on(tests.official_test_id = official_tests.test_id) where user_email = ?"
         cursor.execute(getTestsQuery,(userEmail))
     except pyodbc.Error as ex:
         sqlstate = ex.args[0]
