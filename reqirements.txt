@@ -3,5 +3,3 @@ requests
 numpy
 opencv-python
 pyodbc
-
-
