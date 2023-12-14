@@ -144,28 +144,25 @@ def updateAllTestsScores():
 
 
 #functions for get requests
-def getUserAvailableTestsToDo(userEmail):
+def getUserAvailableTestsToDo(userEmail, testYear):
     testsDict = {}
     cursor = conn.cursor()
-    getAllTestsQuery = "select test_year, test_season_month from official_tests order by test_year"
-    cursor.execute(getAllTestsQuery)
+    getAllTestsQuery = "select test_season_month from official_tests where test_year = ?"
+    cursor.execute(getAllTestsQuery, testYear)
     for row in cursor.fetchall():
-        if row[0] not in testsDict:
-            yearDict = {}
-            testsDict.update({row[0]: yearDict})
-        yearDict.update({row[1]: True})
-
-    geAllUserTestsQuery = "select test_year, test_season_month from tests join official_tests on(official_tests.test_id = tests.official_test_id) where user_email = ?"
-    cursor.execute(geAllUserTestsQuery, (userEmail))
-    for test in cursor.fetchall():
-        testsDict[test[0]][test[1]] = False
+        testsDict.update({f"{row[0]}": True})
+    geAllUserTestsQuery = "select test_season_month from tests join official_tests on(official_tests.test_id = tests.official_test_id) where user_email = ? and test_year = ?"
+    cursor.execute(geAllUserTestsQuery, (userEmail, testYear))
+    for row in cursor.fetchall():
+        testsDict[f"{row[0]}"] = False
     return testsDict
 
-def getSimulationSectionsFirstQuestions(testYear,testSeasonOrMonth):
+def getSimulationSectionsFirstQuestions(testYear, testSeasonOrMonth):
     cursor = conn.cursor()
     questions = []
     getQuestionQuery = "select first_question " \
                        "from official_sections " \
+                       "join official_tests on(official_sections.test_id = official_tests.test_id)" \
                        "where test_year = ? and test_season_month = ? " \
                        "order by section_number"
     cursor.execute(getQuestionQuery,(testYear, testSeasonOrMonth))
