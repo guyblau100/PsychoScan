@@ -7,28 +7,32 @@ app = Flask(__name__)
 
 
 
-@app.route('/userTests/<string:userEmail>', methods=['GET'])
-def get_user_tests(userEmail):
+@app.route('/userTests', methods=['GET'])
+def get_user_tests():
+    userEmail = request.json['email']
+    testYear = request.json['test_year']
     try:
-        tests = DB_Management.getAllUserReports(userEmail)
+        tests = DB_Management.getUserAvailableTestsToDo(userEmail,testYear)
+        return jsonify(tests)
     except Exception as e:
         return jsonify({'error': {'code': 400, 'message': str(e)}}), 400
-    else:
-        return jsonify({'tests': tests})
 
-@app.route('/test/<string:testName>', methods=['GET'])
-def get_test_first_questions(testName):
-    questions = DB_Management.getSimulationFirstQuestions(testName)
-    return jsonify(questions)
+
+@app.route('/test/getFirstQuestions', methods=['GET'])
+def get_test_first_questions():
+    testSeasonMonth = request.json['testSeasonMonth']
+    testYear = request.json['testYear']
+    questions = DB_Management.getSimulationSectionsFirstQuestions(testYear, testSeasonMonth)
+    return jsonify(questions), 200
 
 @app.route('/user/<string:userEmail>', methods=['GET'])
 def get_graph_page_data(userEmail):
     try:
         data = DB_Management.getStatisticsPageData(userEmail)
+        return jsonify(data), 200
     except Exception as e:
         return jsonify({'error': {'code': 400, 'message': str(e)}}), 400
-    else:
-        return jsonify(data)
+
 
 @app.route('/createTest', methods=['POST'])
 def insert_test():
@@ -42,7 +46,7 @@ def insert_test():
         orderedAnswers = utlis.MajorFunction(encoded_image,orderList)
         DB_Management.insertSimulation(userEmail, examYear, examSeasonOrMonth, orderedAnswers)
         resultJson = DB_Management.getSimulationReport(userEmail,examYear,examSeasonOrMonth)
-        return jsonify({resultJson}), 200
+        return jsonify(resultJson), 200
     except Exception as e:
         return jsonify({'error': {'code': 400, 'message': str(e)}}), 400
 
