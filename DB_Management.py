@@ -174,14 +174,14 @@ def getStatisticsPageData(userEmail):
     cursor = conn.cursor()
     userJson = {}
 
-    getBulletsDataQuery = "select count(test_id) as count,avg(final_score) as avg, Min(DATEDIFF(DAY,test_date,GETDATE())) as daysSince from tests where user_email = ? group by user_email"
+    getBulletsDataQuery = "select count(test_id) as count,avg(final_score) as avg, Min(DATEDIFF(DAY, test_date, GETDATE()))+1 AS daysSince from tests where user_email = ? group by user_email"
     try:
         cursor.execute(getBulletsDataQuery,(userEmail))
     except Exception as e:
-        raise CustomError(f"could not get {userEmail} benchmarks. {str(e)}")
+        raise CustomError(f"Internal db error. {str(e)}")
     row = cursor.fetchone()
     if row is None:
-        raise CustomError(f"the email {userEmail} doesn't exist in the system.")
+        raise CustomError(f"the user ({userEmail}) took no tests up to date.")
     userJson.update({"testCount": row.count})
     userJson.update({"avgScore": row.avg})
     userJson.update({"daysSinceLastTest": row.daysSince})
@@ -314,7 +314,7 @@ def insertUser(userEmail,userName,password = None):
     finally:
         cursor.close()
 
-def insertSimulation(userEmail,testYear,testSeasonOrMonth,marks):
+def insertSimulation(userEmail, testYear, testSeasonOrMonth, marks):
     cursor = conn.cursor()
     sectionsIds = []
     officialQuestionsIds = []
@@ -395,7 +395,7 @@ def insertSimulation(userEmail,testYear,testSeasonOrMonth,marks):
         cursor.executemany(insertQuestionQuery, finaleDataToInsert)
     except Exception as e:
         raise CustomError(str("failed to insert the user marks." + str(e)))
-    getRawScoresQuery = f"EXECUTE selectRawScores2 @user_email ='{userEmail}', @test_id ='{test_id}'"
+    getRawScoresQuery = f"EXECUTE selectRawScores @user_email ='{userEmail}', @test_id ='{test_id}'"
     try:
         cursor.execute(getRawScoresQuery)
     except Exception as e:
@@ -438,7 +438,6 @@ def insertSimulation(userEmail,testYear,testSeasonOrMonth,marks):
         raise CustomError(str("failed to update the test scores." + str(e)))
     conn.commit()
     cursor.close()
-
 
 
 
