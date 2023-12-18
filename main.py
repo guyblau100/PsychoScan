@@ -5,6 +5,12 @@ import DB_Management
 
 app = Flask(__name__)
 
+@app.route("/")
+def home():
+    return "Hello, this code is not run on azure "
+
+
+
 
 @app.route('/getUserAvailableTests', methods=['GET'])
 def get_user_tests():
@@ -84,8 +90,7 @@ def create_user():
 
 
 
-if __name__ == '__main__':
-    app.run()
+
 
 
 
