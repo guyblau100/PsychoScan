@@ -5,9 +5,9 @@ import DB_Management
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/health", methods=['GET'])
 def home():
-    return "Hello, this code is not run on azure "
+    return jsonify("OK")
 
 
 
@@ -87,7 +87,8 @@ def create_user():
         return jsonify({"message": f"the user {userName} created successfully"}), 200
 
 
-
+if __name__ == '__main__':
+    app.run()
 
 
 
