@@ -66,4 +66,4 @@ jobs:
         with:
           app-name: 'Psycho-scan-server'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_8165543EF0614F9890DEC4C7BFF6DE4E }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3C244D500ACB494D99A3ADBFE6A60F23 }}
