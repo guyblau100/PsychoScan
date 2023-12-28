@@ -58,6 +58,9 @@ jobs:
       - name: Unzip artifact for deployment
         run: unzip release.zip
 
+      - name: Install libgl1-mesa-glx
+        run: sudo apt-get update && sudo apt-get install -y libgl1-mesa-glx
+
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
