@@ -14,18 +14,27 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Get short SHA
+        run: echo "SHORT_SHA=$(git rev-parse --short=5 HEAD)" >> $GITHUB_ENV
+        
+      # Use the variable in subsequent steps
+      - name: Use Short SHA
+        run: echo "The short SHA is $SHORT_SHA"
+
       - name: Build and push Docker image
         uses: azure/docker-login@v1
         with:
           login-server: ${{ secrets.ACR_LOGIN_SERVER }}
           username: ${{ secrets.ACR_USERNAME }}
           password: ${{ secrets.ACR_PASSWORD }}
+    
       
       - name: Build Docker image
-        run: docker build -t ${{ secrets.ACR_LOGIN_SERVER }}/psycho-scan-server-container:latest .
+        run: docker build -t ${{ secrets.ACR_LOGIN_SERVER }}/psycho-scan-server-container:$SHORT_SHA .
 
       - name: Push Docker image
-        run: docker push ${{ secrets.ACR_LOGIN_SERVER }}/psycho-scan-server-container:latest
+        run: docker push ${{ secrets.ACR_LOGIN_SERVER }}/psycho-scan-server-container:$SHORT_SHA
+      
 
   deploy:
     runs-on: ubuntu-latest
@@ -40,4 +49,4 @@ jobs:
           app-name: 'psycho-scan-server'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A71FDAB6D6FE42F0B563BA533BFBA55B }}
-          images: '${{ secrets.ACR_LOGIN_SERVER }}/psycho-scan-server-container:latest'
+          images: '${{ secrets.ACR_LOGIN_SERVER }}/psycho-scan-server-container:$SHORT_SHA'
