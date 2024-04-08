@@ -333,7 +333,7 @@ def insertSimulation(userEmail, testYear, testSeasonOrMonth, marks):
     try:
         cursor.execute(insertTestQuery, (official_test_id,userEmail))
     except Exception as e:
-        raise CustomError(str("failed to create simulation (without the scores)." + str(e)))
+        raise CustomError(f"Simulation creation failed. The user {userEmail} already has {testSeasonOrMonth}{testYear} simulation documented")
     getTestIdQuery = "SELECT test_id FROM tests where official_test_id = ? and user_email = ?"
     try:
         cursor.execute(getTestIdQuery, (official_test_id,userEmail))

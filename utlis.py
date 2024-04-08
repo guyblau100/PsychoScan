@@ -4,9 +4,10 @@ import math
 import base64
 
 
+
 def preProcessing(img):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    blur = cv2.GaussianBlur(gray, (9, 9), 0)
+    blur = cv2.GaussianBlur(gray, (9, 9), 3)
     imgThresh = cv2.adaptiveThreshold(blur, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY_INV, 91, 10)
     return imgThresh
 
@@ -70,7 +71,6 @@ def redundantPointsRemove(points):
                         break
             if keep_point:
                 filtered_points.append((x1, y1))
-
     return filtered_points
 
 def wrapPerspective(src, points):
@@ -91,14 +91,15 @@ def wrapPerspective(src, points):
         M = cv2.getPerspectiveTransform(input_pts, output_pts)
         out = cv2.warpPerspective(src, M, (maxWidth, maxHeight), flags=cv2.INTER_LINEAR)
         boxes.append(out)
+        #debuging.imagePrint(out, f"box{k}")
     return boxes
 
 def boxesThreshold(boxes):
     i = 0
     for box in boxes:
         box = cv2.cvtColor(box, cv2.COLOR_BGR2GRAY)
-        box = cv2.GaussianBlur(box, (9, 9), 1)
-        box = cv2.adaptiveThreshold(box, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 71, 5)
+        box = cv2.GaussianBlur(box, (5, 5), 20)
+        box = cv2.adaptiveThreshold(box, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, blockSize= 91, C= 5)
         kernel = np.ones((3, 3), np.uint8)
         box = cv2.morphologyEx(box, cv2.MORPH_CLOSE, kernel, iterations=5)
         boxes[i] = box
@@ -107,7 +108,9 @@ def boxesThreshold(boxes):
 
 def adjustBoxes(boxes):
     adjustedBoxes = []
+    i = 0
     for box in boxes:
+
         height, width = box.shape
         cropedBox = box[:int(height-(height % 5)),:]
         cropedBox = cropedBox[int(cropedBox.shape[0] / 5):, :]
@@ -120,15 +123,20 @@ def adjustBoxes(boxes):
         cropedBox[:int(cropedBox.shape[0] * 0.04), :] = 255
         cropedBox[int(cropedBox.shape[0] * 0.98):, :] = 255
         adjustedBoxes.append(cropedBox)
+        i+= 1
+        #debuging.imagePrint(cropedBox, i)
+
     return adjustedBoxes
 
 def answersDetection(boxes):
     allAnswers = []
-    for box in boxes:
+    for i in range(len(boxes)):
         thisSectionAnswers = []
-        columns = np.hsplit(box, 30)
-        for column in columns:
-            bubbles = np.vsplit(column, 4)
+        columns = np.hsplit(boxes[i], 30)
+        for j in range(len(columns)):
+            #if(i==0):
+                # debuging.imagePrint(columns[j],f"english1: column{j}")
+            bubbles = np.vsplit(columns[j], 4)
             answer = markDetect(bubbles)
             thisSectionAnswers.append(answer)
         allAnswers.append(thisSectionAnswers)
@@ -150,9 +158,9 @@ def markDetect(bubbles):
         elif pixel_sum < secondSmallest:
             secondSmallest = pixel_sum
         count += 1
-    if 0.1 > ((sum/4) - (smallest))/(sum/4):                               #No answer was marked
+    if 0.003 > ((sum/4) - (smallest))/(sum/4):                               #No answer was marked
         min_index = -1
-    elif 0.1 > (secondSmallest - smallest)/(sum/4):                        #More than one answer was marked
+    elif 0.05 > (secondSmallest - smallest)/(sum/4):                        #More than one answer was marked
         min_index = -1
     return min_index+1
 
@@ -261,18 +269,15 @@ def MajorFunction(img,sectionsOrderList):
         points1 = redundantPointsRemove(points1)
         points2 = redundantPointsRemove(points2)
         points = cornersSort(points1, points2)
+        #debuging.circlesPrint(src, points)
         # Applying the perspective transform (view from above) for each table
         boxes = wrapPerspective(src, points)
         # Converting the boxes to binary image
         threshBoxes = boxesThreshold(boxes)
         adjustedBoxes = adjustBoxes(threshBoxes)
 
+
         # Creating the answers array (list of 8 sections, each contains list of answers with values: 1,2,3,4)
         answers = answersDetection(adjustedBoxes)
         orderedAnswers = answersReorder(answers, sectionsOrderList)
         return orderedAnswers
-
-
-
-
-
