@@ -11,8 +11,8 @@ class CustomError(Exception):
 #DB connecting stuff
 server = "psycho-scan-server.database.windows.net"
 database = "PSYCHO-SCAN-DB"
-username = "guybl"
-password = "Djokovic2021"
+username = "**********"
+password = "**********"
 driver = "{ODBC Driver 18 for SQL Server}"
 conn_str = f"DRIVER={driver};SERVER={server};DATABASE={database};UID={username};PWD={password}"
 conn = pyodbc.connect(conn_str)
